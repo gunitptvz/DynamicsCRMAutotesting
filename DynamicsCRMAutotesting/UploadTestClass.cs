@@ -28,6 +28,7 @@ namespace DynamicsCRMAutotesting
             string lastwindow;
             string inputE1ID = "Combo_TypeofUploadedData-inputEl";
             string inputESPrecalcID = "Combo_ddsm_DataUploaderESPRecalculation-inputEl";
+            string selectconfigfileID = "uploadBtn-btnEl";
 
             // Main panel click
             Wait.ElementIsVisibleID(driver, mainpanelID);
@@ -84,26 +85,13 @@ namespace DynamicsCRMAutotesting
 
             // Select configuration second field (Select ESP Recalculation Type)
             Wait.ElementIsVisibleID(driver, inputESPrecalcID);
-            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector("#boundlist-1012-listEl .x-boundlist-item"));
+            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector("#boundlist-1013-listEl .x-boundlist-item"));
             element = recalculationTypeOptions.SingleOrDefault(item => item.Text == recalctype);
             element.Click();
 
-            /*Console.WriteLine("Expand drop down list for recalculation");
-            // Expand drop down list
-            IWebElement selectRecalculation = waitDriver.Until(ExpectedConditions.ElementToBeClickable(
-                By.Id("Combo_ddsm_DataUploaderESPRecalculation-inputEl")));
-            selectRecalculation.Click();
-            // ----------------------------------------------------------------------------
-
-            By selectorForOptionsConfigurations = By.CssSelector("#boundlist-1013-listEl .x-boundlist-item");
-            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(selectorForOptionsConfigurations);
-
-            IWebElement RecalculationTypeMenu = recalculationTypeOptions.SingleOrDefault(item => item.Text == recalctype);
-            RecalculationTypeMenu.Click();
-
-            //{02/15/2017 myroshnyk
-            IWebElement uploadElementConfiguration = driver.FindElement(By.Id("uploadBtn-fileInputEl"));
-            uploadElementConfiguration.SendKeys(filepath);
+            // Select Configuration File. Create and save new configuration
+            element = driver.FindElement(By.Id(selectconfigfileID));
+            element.SendKeys(filepath);
 
             //Click on Create & Save new configuration
             IWebElement saveSettings = waitDriver.Until(ExpectedConditions.ElementToBeClickable(
