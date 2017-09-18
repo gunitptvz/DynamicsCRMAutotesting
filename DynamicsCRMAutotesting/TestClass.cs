@@ -22,7 +22,6 @@ namespace DynamicsCRMAutotesting
         string progname = "E1-ARet";
         string recalctype = "Force ESP Recalculation";
         string filepath = "C:\\Selenium\\Output_ARET_Upload.xls";
-        string savebutton = "#button-1081-btnInnerEl";
         int itercount = 10;
         int itertime = 1;
         string uploadframe = "contentIFrame0";
@@ -40,7 +39,7 @@ namespace DynamicsCRMAutotesting
         [Test]
         public void TestMethod()
         {
-           UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath, savebutton, itercount, itertime, uploadframe, uploadstatus);
+           UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath, itercount, itertime, uploadframe, uploadstatus);
         }
         [TearDown, Description("Time sleep and close browser method")]
         public void Closebrowser()

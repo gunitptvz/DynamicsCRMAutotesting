@@ -14,7 +14,7 @@ namespace DynamicsCRMAutotesting
 {
     class UploadTestClass
     {
-        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, string progname, string recalctype, string filepath, string savebutton,
+        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, string progname, string recalctype, string filepath,
             int itercount, int itertime, string uploadframe, string uploadstatus)
         {
             // Data
@@ -28,7 +28,8 @@ namespace DynamicsCRMAutotesting
             string lastwindow;
             string inputE1ID = "Combo_TypeofUploadedData-inputEl";
             string inputESPrecalcID = "Combo_ddsm_DataUploaderESPRecalculation-inputEl";
-            string selectconfigfileID = "uploadBtn-btnEl";
+            string selectconfigfileID = "uploadBtn-fileInputEl";
+            string savenewconfigbuttonID = "button-1082-btnInnerEl";
 
             // Main panel click
             Wait.ElementIsVisibleID(driver, mainpanelID);
@@ -59,8 +60,8 @@ namespace DynamicsCRMAutotesting
             // NEW button click
             Wait.ElementIsVisibleID(driver, newbuttonID);
             element = driver.FindElement(By.Id(newbuttonID));
-            Thread.Sleep(1000);
             Wait.ElementToBeClickableID(driver, newbuttonID);
+            Thread.Sleep(1000);
             element.Click();
 
             // Last opened tab selection
@@ -89,11 +90,18 @@ namespace DynamicsCRMAutotesting
             element = recalculationTypeOptions.SingleOrDefault(item => item.Text == recalctype);
             element.Click();
 
-            // Select Configuration File. Create and save new configuration
+            // Select Configuration File
             element = driver.FindElement(By.Id(selectconfigfileID));
             element.SendKeys(filepath);
+            Thread.Sleep(20000);
 
-            //Click on Create & Save new configuration
+            // Create and save new configuration 
+            //Wait.ElementIsVisibleID(driver, savenewconfigbuttonID);
+            element = driver.FindElement(By.CssSelector("#button-1081-btnInnerEl"));
+            //Wait.ElementToBeClickableID(driver, savenewconfigbuttonID);
+            element.Click();
+
+            /*//Click on Create & Save new configuration
             IWebElement saveSettings = waitDriver.Until(ExpectedConditions.ElementToBeClickable(
                   By.CssSelector(savebutton)));
             saveSettings.Click();
