@@ -19,7 +19,6 @@ namespace DynamicsCRMAutotesting
         string url = "dev3.ddsm.online/EfficiencyOneDDSM/main.aspx#650497072";
         string login = "Administrator";
         string password = "Rjnecz1219694";
-        double waitseconds = 60;
         string progname = "E1-ARet";
         string recalctype = "Force ESP Recalculation";
         string filepath = "C:\\Selenium\\Output_ARET_Upload.xls";
@@ -41,7 +40,7 @@ namespace DynamicsCRMAutotesting
         [Test]
         public void TestMethod()
         {
-           UploadTestClass.Upload(browser, element, login, password, waitseconds, progname, recalctype, filepath, savebutton, itercount, itertime, uploadframe, uploadstatus);
+           UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath, savebutton, itercount, itertime, uploadframe, uploadstatus);
         }
         [TearDown, Description("Time sleep and close browser method")]
         public void Closebrowser()

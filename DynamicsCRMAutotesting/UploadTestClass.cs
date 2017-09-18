@@ -14,7 +14,7 @@ namespace DynamicsCRMAutotesting
 {
     class UploadTestClass
     {
-        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, double waitseconds, string progname, string recalctype, string filepath, string savebutton,
+        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, string progname, string recalctype, string filepath, string savebutton,
             int itercount, int itertime, string uploadframe, string uploadstatus)
         {
             // Data
@@ -24,9 +24,10 @@ namespace DynamicsCRMAutotesting
             string datauplconfigID = "ddsm_datauploaderconfiguration";
             string newbuttonID = "ddsm_datauploaderconfiguration|NoRelationship|HomePageGrid|ddsm.ddsm_datauploaderconfiguration.Button1.Button";
             string typeuploaddataID = "Combo_TypeofUploadedData-trigger-picker";
+            string typeuploaddataRecalculationID = "Combo_ddsm_DataUploaderESPRecalculation-trigger-picker";
             string lastwindow;
-            string eformname = "E1-ARet";
             string inputE1ID = "Combo_TypeofUploadedData-inputEl";
+            string inputESPrecalcID = "Combo_ddsm_DataUploaderESPRecalculation-inputEl";
 
             // Main panel click
             Wait.ElementIsVisibleID(driver, mainpanelID);
@@ -73,11 +74,19 @@ namespace DynamicsCRMAutotesting
             // Select configuration first field (E1-Form) Спросить у Ильи!!!
             Wait.ElementIsVisibleID(driver, inputE1ID);
             ReadOnlyCollection<IWebElement> programNameOptions = driver.FindElements(By.CssSelector("#boundlist-1012-listEl .x-boundlist-item"));
-            element = programNameOptions.SingleOrDefault(item => item.Text == eformname);
+            element = programNameOptions.SingleOrDefault(item => item.Text == progname);
+            element.Click();
+
+            // Second field drop down menu expanding
+            Wait.ElementIsVisibleID(driver, typeuploaddataRecalculationID);
+            element = driver.FindElement(By.Id(typeuploaddataRecalculationID));
             element.Click();
 
             // Select configuration second field (Select ESP Recalculation Type)
-            Wait.ElementIsVisibleID();
+            Wait.ElementIsVisibleID(driver, inputESPrecalcID);
+            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector("#boundlist-1012-listEl .x-boundlist-item"));
+            element = recalculationTypeOptions.SingleOrDefault(item => item.Text == recalctype);
+            element.Click();
 
             /*Console.WriteLine("Expand drop down list for recalculation");
             // Expand drop down list
