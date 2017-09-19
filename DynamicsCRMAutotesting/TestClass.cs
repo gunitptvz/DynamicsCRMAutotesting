@@ -41,6 +41,18 @@ namespace DynamicsCRMAutotesting
         {
            UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath, itercount, itertime, uploadframe, uploadstatus);
         }
+
+        [Test]
+        public void TestMethod1()
+        {
+            /*browser.Navigate().GoToUrl("https://dev3.ddsm.online/EfficiencyOneDDSM/main.aspx?etn=ddsm_datauploader&extraqs=&histKey=701914286&id=b57f0178-1d9d-e711-8171-3a3035663562&newWindow=true&pagetype=entityrecord#825826692");
+            Thread.Sleep(4000);
+            Wait.ElementIsVisibleID(browser, "header_crmFormSelector");
+            element = browser.FindElement(By.Id("header_crmFormSelector"));
+            Wait.ElementToBeClickableID(browser, "tab0");
+            element.Click();*/
+        }
+
         [TearDown, Description("Time sleep and close browser method")]
         public void Closebrowser()
         {

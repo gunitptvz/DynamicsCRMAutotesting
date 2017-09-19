@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
+using NUnit.Framework;
 
 
 namespace DynamicsCRMAutotesting
@@ -26,10 +27,15 @@ namespace DynamicsCRMAutotesting
             string typeuploaddataID = "Combo_TypeofUploadedData-trigger-picker";
             string typeuploaddataRecalculationID = "Combo_ddsm_DataUploaderESPRecalculation-trigger-picker";
             string lastwindow;
+            string expected;
             string inputE1ID = "Combo_TypeofUploadedData-inputEl";
             string inputESPrecalcID = "Combo_ddsm_DataUploaderESPRecalculation-inputEl";
             string selectconfigfileID = "uploadBtn-fileInputEl";
-            string savenewconfigbuttonID = "button-1082-btnInnerEl";
+            string inputE1CSS = "#boundlist-1012-listEl .x-boundlist-item";
+            string inputESPrecalcCSS = "#boundlist-1013-listEl .x-boundlist-item";
+            string savenewconfigbuttonCSS = "#button-1081-btnInnerEl";
+            string configsavedbuttonXPATH = ".//*[@id='alertJs-tdDialogFooter']/button"; // This path also uses for "Excel File Upload Completed" button.
+            string statusfiledatauplID = "ddsm_statusfiledatauploading";
 
             // Main panel click
             Wait.ElementIsVisibleID(driver, mainpanelID);
@@ -61,7 +67,7 @@ namespace DynamicsCRMAutotesting
             Wait.ElementIsVisibleID(driver, newbuttonID);
             element = driver.FindElement(By.Id(newbuttonID));
             Wait.ElementToBeClickableID(driver, newbuttonID);
-            Thread.Sleep(1000);
+            Thread.Sleep(1500);
             element.Click();
 
             // Last opened tab selection
@@ -75,7 +81,7 @@ namespace DynamicsCRMAutotesting
 
             // Select configuration first field (E1-Form) Спросить у Ильи!!!
             Wait.ElementIsVisibleID(driver, inputE1ID);
-            ReadOnlyCollection<IWebElement> programNameOptions = driver.FindElements(By.CssSelector("#boundlist-1012-listEl .x-boundlist-item"));
+            ReadOnlyCollection<IWebElement> programNameOptions = driver.FindElements(By.CssSelector(inputE1CSS));
             element = programNameOptions.SingleOrDefault(item => item.Text == progname);
             element.Click();
 
@@ -86,7 +92,7 @@ namespace DynamicsCRMAutotesting
 
             // Select configuration second field (Select ESP Recalculation Type)
             Wait.ElementIsVisibleID(driver, inputESPrecalcID);
-            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector("#boundlist-1013-listEl .x-boundlist-item"));
+            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector(inputESPrecalcCSS));
             element = recalculationTypeOptions.SingleOrDefault(item => item.Text == recalctype);
             element.Click();
 
@@ -96,61 +102,55 @@ namespace DynamicsCRMAutotesting
             Thread.Sleep(20000);
 
             // Create and save new configuration 
-            //Wait.ElementIsVisibleID(driver, savenewconfigbuttonID);
-            element = driver.FindElement(By.CssSelector("#button-1081-btnInnerEl"));
-            //Wait.ElementToBeClickableID(driver, savenewconfigbuttonID);
+            Wait.ElementIsVisibleCSS(driver, savenewconfigbuttonCSS);
+            element = driver.FindElement(By.CssSelector(savenewconfigbuttonCSS));
+            Wait.ElementToBeClickableCSS(driver, savenewconfigbuttonCSS);
             element.Click();
 
-            /*//Click on Create & Save new configuration
-            IWebElement saveSettings = waitDriver.Until(ExpectedConditions.ElementToBeClickable(
-                  By.CssSelector(savebutton)));
-            saveSettings.Click();
+            // Configuration has been saved button click
+            Wait.ElementIsVisibleXPATH(driver, configsavedbuttonXPATH);
+            element = driver.FindElement(By.XPath(configsavedbuttonXPATH));
+            Wait.ElementToBeClickableXPATH(driver, configsavedbuttonXPATH);
+            element.Click();
 
-            //------------------------- Stop 2/20/17
+            // Last opened tab selection (second opening)
+            lastwindow = driver.WindowHandles.Last();
+            driver.SwitchTo().Window(lastwindow);
 
-            CheckDialogWindow(driver, waitDriver, itercount, TimeSpan.FromSeconds(itertime)); //<<<<==== added
+            // First field drop down menu expanding (second opening)
+            Wait.ElementToBeClickableID(driver, typeuploaddataID);
+            element = driver.FindElement(By.Id(typeuploaddataID));
+            element.Click();
 
-            string childWindow = driver.WindowHandles.Last();
-            driver.SwitchTo().Window(childWindow);
-            //driver.Manage().Window.Maximize();
+            // Select configuration first field (E1-Form) (second opening)
+            Wait.ElementIsVisibleID(driver, inputE1ID);
+            programNameOptions = driver.FindElements(By.CssSelector(inputE1CSS));
+            element = programNameOptions.SingleOrDefault(item => item.Text == progname);
+            element.Click();
 
-            // Expand drop down list
-            WebDriverWait waitDriverUpload = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
-            IWebElement selectUploadProgramMenu = waitDriver.Until(ExpectedConditions.ElementToBeClickable(
-                By.Id("Combo_TypeofUploadedData-trigger-picker")));
-            selectUploadProgramMenu.Click();
+            // Select Configuration File (second opening)
+            element = driver.FindElement(By.Id(selectconfigfileID));
+            element.SendKeys(filepath);
 
-            waitDriver.Until(ExpectedConditions.ElementIsVisible(
-                By.Id("Combo_TypeofUploadedData-bodyEl")
-            ));
-            By selectorUploadProgram = By.CssSelector("#boundlist-1012-listEl .x-boundlist-item");
-            ReadOnlyCollection<IWebElement> uploadProgramOptions = driver.FindElements(selectorUploadProgram);
+            // Excel File Upload Completed. Start remote parsing excel file button click
+            Wait.ElementIsVisibleXPATH(driver, configsavedbuttonXPATH);
+            element = driver.FindElement(By.XPath(configsavedbuttonXPATH));
+            Wait.ElementToBeClickableXPATH(driver, configsavedbuttonXPATH);
+            element.Click();
 
-            IWebElement elementProgramName = uploadProgramOptions.SingleOrDefault(item => item.Text == progname); //<<<<<<<<<<<<<<<<<<<<==================
-            elementProgramName.Click();
-            // ----------------------------------------------------------------------------
-            IWebElement uploadElement = driver.FindElement(By.Id("uploadBtn-fileInputEl"));
-            uploadElement.SendKeys(filepath);
+            // Last opened tab selection (third opening) and frame selection
+            lastwindow = driver.WindowHandles.Last();
+            driver.SwitchTo().Window(lastwindow);
+            driver.SwitchTo().Frame("contentIFrame0");
+            Thread.Sleep(60000);
 
-            Console.WriteLine("Wait until dialog window wasn't show");
-            // Wait until dialog window wasn't show
-            CheckDialogWindow(driver, waitDriver, itercount, TimeSpan.FromSeconds(itertime));
-            // ----------------------------------------------------------------------------
-
-            Console.WriteLine("Wait until status is not equal <param>");
-            // Wait until status is not equal <param>
-            string childWindowUploder = driver.WindowHandles.Last();
-            driver.SwitchTo().Window(childWindowUploder);
-            //driver.Manage().Window.Maximize();
-            waitDriver.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.Id(uploadframe)));
-
-            string status = uploadstatus;
-            CheckStatus(driver, itercount, TimeSpan.FromSeconds(itertime), status);
+            // Import Completed Successfully verification
+            expected = "15. Import Completed Successfully";
+            Wait.ElementIsVisibleID(driver, statusfiledatauplID);
+            element = driver.FindElement(By.Id(statusfiledatauplID));
+            Assert.AreEqual(expected, element.Text, "Uploading not completed");
 
 
-
-            // ----------------------------------------------------------------------------
-            Console.WriteLine();*/
         }
 
         public static void CheckDialogWindow(IWebDriver driver, WebDriverWait waitDriver, int count, TimeSpan time)
