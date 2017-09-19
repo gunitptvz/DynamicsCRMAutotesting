@@ -52,7 +52,7 @@ namespace DynamicsCRMAutotesting
         [TearDown, Description("Time sleep and close browser method")]
         public void Closebrowser()
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             browser.Quit();
         }
     }
