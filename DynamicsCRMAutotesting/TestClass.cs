@@ -22,10 +22,6 @@ namespace DynamicsCRMAutotesting
         string progname = "E1-ARet";
         string recalctype = "Force ESP Recalculation";
         string filepath = "C:\\Selenium\\Output_ARET_Upload.xls";
-        int itercount = 10;
-        int itertime = 1;
-        string uploadframe = "contentIFrame0";
-        string uploadstatus = "15. Import Completed Successfully";
 
         [SetUp, Description("Open browser method")]
         public void Openbrowser()
@@ -36,22 +32,22 @@ namespace DynamicsCRMAutotesting
             Thread.Sleep(TimeSpan.FromSeconds(3));
         }
 
-        [Test]
-        public void TestMethod()
+        [Test, Description("Run Upload File within the Uploader")]
+        public void RunUplFileWithinUpl()
         {
-           UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath, itercount, itertime, uploadframe, uploadstatus);
+           UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath);
         }
 
-        [Test]
+        /*[Test]
         public void TestMethod1()
         {
-            /*browser.Navigate().GoToUrl("https://dev3.ddsm.online/EfficiencyOneDDSM/main.aspx?etn=ddsm_datauploader&extraqs=&histKey=701914286&id=b57f0178-1d9d-e711-8171-3a3035663562&newWindow=true&pagetype=entityrecord#825826692");
+            browser.Navigate().GoToUrl("");
             Thread.Sleep(4000);
             Wait.ElementIsVisibleID(browser, "header_crmFormSelector");
             element = browser.FindElement(By.Id("header_crmFormSelector"));
             Wait.ElementToBeClickableID(browser, "tab0");
-            element.Click();*/
-        }
+            element.Click();
+        }*/
 
         [TearDown, Description("Time sleep and close browser method")]
         public void Closebrowser()

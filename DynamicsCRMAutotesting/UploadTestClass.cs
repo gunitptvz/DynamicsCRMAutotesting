@@ -15,8 +15,7 @@ namespace DynamicsCRMAutotesting
 {
     class UploadTestClass
     {
-        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, string progname, string recalctype, string filepath,
-            int itercount, int itertime, string uploadframe, string uploadstatus)
+        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, string progname, string recalctype, string filepath)
         {
             // Data
             string mainpanelID = "TabHome";
@@ -34,7 +33,7 @@ namespace DynamicsCRMAutotesting
             string inputE1CSS = "#boundlist-1012-listEl .x-boundlist-item";
             string inputESPrecalcCSS = "#boundlist-1013-listEl .x-boundlist-item";
             string savenewconfigbuttonCSS = "#button-1081-btnInnerEl";
-            string configsavedbuttonXPATH = ".//*[@id='alertJs-tdDialogFooter']/button"; // This path also uses for "Excel File Upload Completed" button.
+            string configsavedbuttonXPATH = ".//*[@id='alertJs-tdDialogFooter']/button"; // This path also uses for the "Excel File Upload Completed" button.
             string statusfiledatauplID = "ddsm_statusfiledatauploading";
 
             // Main panel click
@@ -142,77 +141,13 @@ namespace DynamicsCRMAutotesting
             lastwindow = driver.WindowHandles.Last();
             driver.SwitchTo().Window(lastwindow);
             driver.SwitchTo().Frame("contentIFrame0");
-            Thread.Sleep(60000);
+            Thread.Sleep(70000);
 
             // Import Completed Successfully verification
             expected = "15. Import Completed Successfully";
             Wait.ElementIsVisibleID(driver, statusfiledatauplID);
             element = driver.FindElement(By.Id(statusfiledatauplID));
             Assert.AreEqual(expected, element.Text, "Uploading not completed");
-
-
-        }
-
-        public static void CheckDialogWindow(IWebDriver driver, WebDriverWait waitDriver, int count, TimeSpan time)
-        {
-            Thread.Sleep(time.Milliseconds);
-
-            string childWindow = driver.WindowHandles.Last();
-            driver.SwitchTo().Window(childWindow);
-
-            try
-            {
-                IWebElement btn = waitDriver.Until(ExpectedConditions.ElementToBeClickable(
-                    By.CssSelector("#alertJs-tdDialogFooter button")
-                ));
-                btn.Click();
-
-                return;
-            }
-            catch (WebDriverTimeoutException)
-            {
-                if (count > 0)
-                {
-                    CheckDialogWindow(driver, waitDriver, --count, time);
-                }
-                else
-                {
-                    throw new WebDriverTimeoutException();
-                }
-            }
-        }
-
-        public static void CheckStatus(IWebDriver driver, int iterationCount, TimeSpan time, string status)
-        {
-            int milliseconds = Convert.ToInt32(time.TotalMilliseconds);
-            Thread.Sleep(milliseconds);
-            //WebDriverWait waitDriver = new WebDriverWait(driver, time);
-
-            IWebElement statusElement = null;
-            try
-            {
-                //IWebElement statusElement = waitDriver.Until(ExpectedConditions.ElementIsVisible(By.Id(
-                //    "ddsm_statusfiledatauploading")));
-                //waitDriver.Until(ExpectedConditions.TextToBePresentInElement(statusElement, status));
-
-                statusElement = driver.FindElement(By.Id("ddsm_statusfiledatauploading"));
-                if (statusElement.Text != status)
-                {
-                    throw new Exception();
-                }
-            }
-            catch (Exception)
-            {
-                if (iterationCount > 0)
-                {
-                    CheckStatus(driver, --iterationCount, time, status);
-                }
-                else
-                {
-                    throw new Exception("************** Upload status is wrong, expected - " + status
-                        + ", actual - " + statusElement.Text);
-                }
-            }
         }
     }
 }
