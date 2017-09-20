@@ -4,10 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support;
 using OpenQA.Selenium.Support.UI;
-using System.Collections.ObjectModel;
 using NUnit.Framework;
 
 
@@ -15,7 +15,7 @@ namespace DynamicsCRMAutotesting
 {
     class UploadTestClass
     {
-        public static void Upload(IWebDriver driver, IWebElement element, string login, string password, string progname, string recalctype, string filepath)
+        public static void Upload(IWebDriver driver, IWebElement element, string progname, string recalctype, string filepath)
         {
             // Data
             string mainpanelID = "TabHome";
@@ -37,8 +37,6 @@ namespace DynamicsCRMAutotesting
             string statusfiledatauplID = "ddsm_statusfiledatauploading";
 
             // Main panel click
-            //Wait.ElementIsVisibleID(driver, mainpanelID);
-            //element = driver.FindElement(By.Id(mainpanelID));
             element = Wait.ElementToBeClickable(driver, By.Id(mainpanelID));
             element.Click();
 
@@ -71,7 +69,7 @@ namespace DynamicsCRMAutotesting
 
             // Select configuration first field (E1-Form) Спросить у Ильи!!!
             Wait.ElementIsVisible(driver, By.Id(inputE1ID));
-            ReadOnlyCollection<IWebElement> programNameOptions = driver.FindElements(By.CssSelector(inputE1CSS));
+            List<IWebElement> programNameOptions = driver.FindElements(By.CssSelector(inputE1CSS)).ToList();
             element = programNameOptions.SingleOrDefault(item => item.Text == progname);
             element.Click();
 
@@ -81,7 +79,7 @@ namespace DynamicsCRMAutotesting
 
             // Select configuration second field (Select ESP Recalculation Type)
             Wait.ElementIsVisible(driver, By.Id(inputESPrecalcID));
-            ReadOnlyCollection<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector(inputESPrecalcCSS));
+            IList<IWebElement> recalculationTypeOptions = driver.FindElements(By.CssSelector(inputESPrecalcCSS)).ToList();
             element = recalculationTypeOptions.SingleOrDefault(item => item.Text == recalctype);
             element.Click();
 
@@ -108,7 +106,7 @@ namespace DynamicsCRMAutotesting
 
             // Select configuration first field (E1-Form) (second opening)
             Wait.ElementIsVisible(driver, By.Id(inputE1ID));
-            programNameOptions = driver.FindElements(By.CssSelector(inputE1CSS));
+            programNameOptions = driver.FindElements(By.CssSelector(inputE1CSS)).ToList();
             element = programNameOptions.SingleOrDefault(item => item.Text == progname);
             element.Click();
 

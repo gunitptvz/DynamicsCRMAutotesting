@@ -8,6 +8,8 @@ using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support;
+using DynamicsCRMAutotesting.Data;
+using DynamicsCRMAutotesting.Service_Methods;
 
 namespace DynamicsCRMAutotesting
 {
@@ -16,18 +18,15 @@ namespace DynamicsCRMAutotesting
     {
         IWebDriver browser = new ChromeDriver();
         IWebElement element = null;
-        string url = "dev3.ddsm.online/EfficiencyOneDDSM/main.aspx#650497072";
-        string login = "Administrator";
-        string password = "Rjnecz1219694";
-        string progname = "E1-ARet";
-        string recalctype = "Force ESP Recalculation";
-        string filepath = "C:\\Selenium\\Output_ARET_Upload.xls";
+        static string jsonfilepath = @"c:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\DynamicsCRMAutotesting\\bin\\Debug\\aret_upload.json";
+        DataModel data = Mapping.MapJson(jsonfilepath);
+
 
         [SetUp, Description("Open browser method")]
         public void Openbrowser()
         {
             browser.Manage().Window.Maximize();
-            browser.Navigate().GoToUrl("https://" + login + ":" + password + "@" + url);
+            browser.Navigate().GoToUrl("https://" + data.Login + ":" + data.Password + "@" + data.Url);
             //browser.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(5));
             Thread.Sleep(TimeSpan.FromSeconds(3));
         }
@@ -35,7 +34,7 @@ namespace DynamicsCRMAutotesting
         [Test, Description("Run Upload File within the Uploader")]
         public void RunUplFileWithinUpl()
         {
-           UploadTestClass.Upload(browser, element, login, password, progname, recalctype, filepath);
+           UploadTestClass.Upload(browser, element, data.Progname, data.Recalctype, data.Filepath);
         }
 
         /*[Test]
