@@ -25,6 +25,7 @@ namespace DynamicsCRMAutotesting
         [SetUp, Description("Open browser method")]
         public void Openbrowser()
         {
+            Console.WriteLine("Browser opening");
             browser.Manage().Window.Maximize();
             browser.Navigate().GoToUrl("https://" + data.Login + ":" + data.Password + "@" + data.Url);
             //browser.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(5));
@@ -34,6 +35,7 @@ namespace DynamicsCRMAutotesting
         [Test, Description("Run Upload File within the Uploader")]
         public void RunUplFileWithinUpl()
         {
+            Console.WriteLine("Method opening");
            UploadTestClass.Upload(browser, element, data.Progname, data.Recalctype, data.Filepath);
         }
 
