@@ -18,7 +18,7 @@ namespace DynamicsCRMAutotesting
     {
         IWebDriver browser = new ChromeDriver();
         IWebElement element = null;
-        static string jsonfilepath = @"c:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\DynamicsCRMAutotesting\\bin\\Debug\\aret_upload.json";
+        static string jsonfilepath = /*"aret_upload.json";*/@"c:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\DynamicsCRMAutotesting\\bin\\Debug\\aret_upload.json";
         DataModel data = Mapping.MapJson(jsonfilepath);
 
 
