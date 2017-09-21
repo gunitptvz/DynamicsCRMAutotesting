@@ -25,7 +25,7 @@ namespace DynamicsCRMAutotesting
         [SetUp, Description("Open browser method")]
         public void Openbrowser()
         {
-            //browser.Manage().Window.Maximize();
+            browser.Manage().Window.Maximize();
             browser.Navigate().GoToUrl("https://" + data.Login + ":" + data.Password + "@" + data.Url);
             //browser.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(5));
             Thread.Sleep(TimeSpan.FromSeconds(3));
