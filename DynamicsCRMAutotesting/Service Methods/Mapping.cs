@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using Newtonsoft.Json;
+using System.IO;
 using DynamicsCRMAutotesting.Data;
 
 namespace DynamicsCRMAutotesting.Service_Methods
@@ -27,6 +27,7 @@ namespace DynamicsCRMAutotesting.Service_Methods
             Dictionary<string, object> config = JsonConvert.DeserializeObject<Dictionary<string, object>>(configprep);
 
             result.Url = config["url"].ToString();
+            result.Reporthost = config["reporthost"].ToString();
             result.Login = config["login"].ToString();
             result.Password = config["password"].ToString();
             result.Progname = config["programName"].ToString();

@@ -1,0 +1,17 @@
+{
+    "url": "dev3.ddsm.online/EfficiencyOneDDSM/main.aspx#650497072",
+    "login": "Administrator",
+    "password": "Rjnecz1219694",
+    "reporthost": "mongodb://localhost:27017",
+    "programName": "E1-ARet",
+    "recalculationType": "Force ESP Recalculation",
+    "filePath": "C:\\Selenium\\Output_ARET_Upload.xls",
+    "dialogWindowConfig": {
+        "IterationCount": 10,
+        "IterationTime": 1
+    },
+    "statusConfig": {
+        "IterationCount": 240,
+        "IterationTime": 5
+    }
+}

@@ -10,7 +10,7 @@ namespace DynamicsCRMAutotesting
 {
     class Wait
     {
-        static double seconds = 90;
+        static double seconds = 15;
 
         /// <summary>
         /// Method for wait element is visible
@@ -32,7 +32,7 @@ namespace DynamicsCRMAutotesting
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
             IWebElement txt = wait.Until(ExpectedConditions.ElementToBeClickable(locator));
-            return txt; // comment
+            return txt;
         }
     }
 }

@@ -14,5 +14,6 @@ namespace DynamicsCRMAutotesting.Data
         public string Progname { get; set; }
         public string Recalctype { get; set; }
         public string Filepath { get; set; }
+        public string Reporthost { get; set; }
     }
 }

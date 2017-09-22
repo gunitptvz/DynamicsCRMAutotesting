@@ -18,37 +18,33 @@ namespace DynamicsCRMAutotesting
     {
         IWebDriver browser = new ChromeDriver();
         IWebElement element = null;
-        static string jsonfilepath = "aret_upload.json";//@"c:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\DynamicsCRMAutotesting\\bin\\Debug\\aret_upload.json";
+        ExtentReportExecutor repexecute = null;
+        // mongodb://195.88.73.175:27017
+
+        static string jsonfilepath = @"c:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\aret_upload.json"; //"aret_upload.json";
         DataModel data = Mapping.MapJson(jsonfilepath);
 
 
         [SetUp, Description("Open browser method")]
         public void Openbrowser()
         {
-            Console.WriteLine("Browser opening");
             browser.Manage().Window.Maximize();
             browser.Navigate().GoToUrl("https://" + data.Login + ":" + data.Password + "@" + data.Url);
-            //browser.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(5));
             Thread.Sleep(TimeSpan.FromSeconds(3));
         }
 
-        [Test, Description("Run Upload File within the Uploader")]
-        public void RunUplFileWithinUpl()
+        [Test]
+        public void Run_Upload_File_Within_Uploader()
         {
-            Console.WriteLine("Method opening");
-           UploadTestClass.Upload(browser, element, data.Progname, data.Recalctype, data.Filepath);
+           repexecute = new ExtentReportExecutor(data.Reporthost);
+           UploadTestClass.Upload(browser, element, data.Progname, data.Recalctype, data.Filepath, repexecute);
         }
 
-        /*[Test]
-        public void TestMethod1()
+        [Test]
+        public void Accounts()
         {
-            browser.Navigate().GoToUrl("");
-            Thread.Sleep(4000);
-            Wait.ElementIsVisibleID(browser, "header_crmFormSelector");
-            element = browser.FindElement(By.Id("header_crmFormSelector"));
-            Wait.ElementToBeClickableID(browser, "tab0");
-            element.Click();
-        }*/
+            
+        }
 
         [TearDown, Description("Time sleep and close browser method")]
         public void Closebrowser()
