@@ -32,7 +32,7 @@ namespace DynamicsCRMAutotesting
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
             IWebElement txt = wait.Until(ExpectedConditions.ElementToBeClickable(locator));
-            return txt;
+            return txt; // comment
         }
     }
 }
