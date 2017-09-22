@@ -36,11 +36,6 @@ namespace DynamicsCRMAutotesting
             string configsavedbuttonXPATH = ".//*[@id='alertJs-tdDialogFooter']/button"; // This path also uses for the "Excel File Upload Completed" button.
             string statusfiledatauplID = "ddsm_statusfiledatauploading";
 
-            // first element
-            element = Wait.ElementToBeClickable(driver, By.Id(newbuttonID));
-            Thread.Sleep(1500);
-            element.Click();
-
             // Main panel click
             element = Wait.ElementToBeClickable(driver, By.Id(mainpanelID));
             element.Click();
