@@ -10,7 +10,7 @@ namespace DynamicsCRMAutotesting
 {
     class Wait
     {
-        static double seconds = 40;
+        static double seconds = 90;
 
         /// <summary>
         /// Method for wait element is visible
