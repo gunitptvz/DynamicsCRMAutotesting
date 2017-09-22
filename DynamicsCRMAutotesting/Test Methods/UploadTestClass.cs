@@ -37,7 +37,7 @@ namespace DynamicsCRMAutotesting
             string statusfiledatauplID = "ddsm_statusfiledatauploading";
 
             // Main panel click
-            element = Wait.ElementToBeClickable(driver, By.Id(mainpanelID));
+            element = Wait.ElementToBeClickable(driver, By.XPath(".//*[@id='TabHome']"));
             element.Click();
 
             // Settings click
