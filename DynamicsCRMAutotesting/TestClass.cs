@@ -20,16 +20,16 @@ namespace DynamicsCRMAutotesting
         IWebDriver browser = new ChromeDriver();
         IWebElement element = null;
         DataModel data = null;
+        PathModel path;
         ExtentReportExecutor repexecute = null;
         // mongodb://195.88.73.175:27017
-
-        static string aretuploadfilepath = "C:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\aret_upload.json"; //"aret_upload.json";
-        static string aretaccountfilepath = "C:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\aret_account.json";
+        static string pathfile = "C:\\Users\\hoswt\\Source\\Repos\\DynamicsCRMAutotesting\\pathes.json";
 
         [SetUp, Description("Open browser method")]
         public void Openbrowser()
         {
-            data = Mapping.MapJson(aretuploadfilepath);
+            path = Mapping.PathMapJson(pathfile);
+            data = Mapping.MapJson(path.Aret_Upload);
             browser.Manage().Window.Maximize();
             browser.Navigate().GoToUrl("https://" + data.Login + ":" + data.Password + "@" + data.Url);
             Thread.Sleep(TimeSpan.FromSeconds(3));
@@ -38,7 +38,7 @@ namespace DynamicsCRMAutotesting
         [Test]
         public void Run_Upload_File_Within_Uploader()
         {
-            data = Mapping.MapJson(aretuploadfilepath);
+            data = Mapping.MapJson(path.Aret_Upload);
             repexecute = new ExtentReportExecutor(data.Reporthost);
             UploadTestClass.Upload(browser, element, data.Progname, data.Recalctype, data.Filepath, repexecute);
         }
@@ -46,7 +46,7 @@ namespace DynamicsCRMAutotesting
         [Test]
         public void Accounts()
         {
-            data = Mapping.MapJson(aretaccountfilepath);
+            data = Mapping.MapJson(path.Aret_Account);
             repexecute = new ExtentReportExecutor(data.Reporthost);
             AccountTestClass.Account(browser, element, repexecute);
         }

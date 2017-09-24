@@ -1,10 +1,9 @@
 {
-  "seleniumDriverPath": "c:\\Selenium",
   "recordName": "*Alden La*",
   "login": "Administrator",
   "password": "Rjnecz1219694",
-  "url": "https://dev3.ddsm.online/EfficiencyOneDDSM/main.aspx#650497072", //Administrator:ghjuhfvth@
-  "frame": "contentIFrame0", //contentIFrame0
+  "url": "https://dev3.ddsm.online/EfficiencyOneDDSM/main.aspx#650497072",
+  "reporthost": "mongodb://localhost:27017",
   "rowAccSelector": ".ms-crm-List-DataCell:nth-child(3) a",//.ms-crm-List-DataCell:nth-child(3) a
   "pageTitle": "Accounts Accounts - Microsoft Dynamics CRM",
   "resultFolder": "TestResult//",

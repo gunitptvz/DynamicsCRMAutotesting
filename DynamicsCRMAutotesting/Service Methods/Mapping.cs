@@ -36,5 +36,26 @@ namespace DynamicsCRMAutotesting.Service_Methods
 
             return result;
         }
+
+        /// <summary>
+        /// Static method fot returning the PathModel type object with data properties
+        /// </summary>
+        /// <param name="jsonfile"></param>
+        /// <returns></returns>
+        public static PathModel PathMapJson(string jsonfile)
+        {
+            PathModel result = new PathModel();
+
+            // Read all text from json file
+            string configprep = File.ReadAllText(jsonfile);
+
+            // Deserialize text to the Dictionary<string, object> config
+            Dictionary<string, object> config = JsonConvert.DeserializeObject<Dictionary<string, object>>(configprep);
+
+            result.Aret_Upload = config["aret_upload"].ToString();
+            result.Aret_Account = config["aret_account"].ToString();
+
+            return result;
+        }
     }
 }

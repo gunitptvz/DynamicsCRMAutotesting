@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataModel.cs" />
+    <Compile Include="Data\PathModel.cs" />
     <Compile Include="Service Methods\ExtentReportExecutor.cs" />
     <Compile Include="Service Methods\Mapping.cs" />
     <Compile Include="Test Methods\AccountTestClass.cs" />
