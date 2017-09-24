@@ -55,6 +55,7 @@
     <Compile Include="Data\DataModel.cs" />
     <Compile Include="Service Methods\ExtentReportExecutor.cs" />
     <Compile Include="Service Methods\Mapping.cs" />
+    <Compile Include="Test Methods\AccountTestClass.cs" />
     <Compile Include="TestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test Methods\UploadTestClass.cs" />

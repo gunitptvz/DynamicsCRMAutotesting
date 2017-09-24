@@ -14,7 +14,7 @@ using AventStack.ExtentReports;
 using DynamicsCRMAutotesting.Service_Methods;
 
 
-namespace DynamicsCRMAutotesting
+namespace DynamicsCRMAutotesting.Test_Methods
 {
     class UploadTestClass
     {
@@ -38,7 +38,7 @@ namespace DynamicsCRMAutotesting
             string inputE1CSS = "#boundlist-1012-listEl .x-boundlist-item";
             string inputESPrecalcCSS = "#boundlist-1013-listEl .x-boundlist-item";
             string savenewconfigbuttonCSS = "#button-1081-btnInnerEl";
-            string configsavedbuttonXPATH = ".//*[@id='alertJs-tdDialogFooter']/button"; // This path also uses for the "Excel File Upload Completed" button.
+            string configsavedbuttonXPATH = ".//*[@id='alertJs-tdDialogFooter']/button"; // The path also uses for the "Excel File Upload Completed" button.
             string statusfiledatauplID = "ddsm_statusfiledatauploading";
 
             // Report starting

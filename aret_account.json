@@ -1,0 +1,109 @@
+{
+  "seleniumDriverPath": "c:\\Selenium",
+  "recordName": "*Alden La*",
+  "login": "Administrator",
+  "password": "Rjnecz1219694",
+  "url": "https://dev3.ddsm.online/EfficiencyOneDDSM/main.aspx#650497072", //Administrator:ghjuhfvth@
+  "frame": "contentIFrame0", //contentIFrame0
+  "rowAccSelector": ".ms-crm-List-DataCell:nth-child(3) a",//.ms-crm-List-DataCell:nth-child(3) a
+  "pageTitle": "Accounts Accounts - Microsoft Dynamics CRM",
+  "resultFolder": "TestResult//",
+  "correctView": {
+    "dropDownSelector": "#crmGrid_SavedNewQuerySelector",
+    "menuItemSelector": "ul.ms-crm-VS-Menu li a.ms-crm-VS-MenuItem-Anchor[title=\"Accounts\"] nobr"
+  },
+  "isSelectedForm": true,
+  "uploadConfig": {
+    "isExecute": true,
+    "path": "aret_upload"
+  },
+  "correctForm": {
+    "dropDownSelector": "#formselectorcontainer .ms-crm-FormSelector",
+    "menuItemSelector": "ul.ms-crm-FS-Menu li a.ms-crm-FS-MenuItem-Anchor[title=\"E1 Account\"] nobr"
+  },
+  "timeSpan": "30",
+  "jqFields": {
+    "IterationCount": 300,
+    "IterationTime": 2
+  },
+  "fields": {
+    "formselectorcontainer": "ACCOUNT : E1 ACCOUNT",
+    "ddsm_accounttype": "Residential",
+    "ddsm_recordtypemultiselect": "Customer",
+    "ddsm_firstname": "Alden",
+    "ddsm_lastname": "La",
+    "name_d": "Alden La",
+    "ddsm_accountprimarykey_d": "laald5010",
+    "telephone1_d": "(902) 752-5010",
+    "telephone2_d": ["--", "$0.00"],
+    "ddsm_fax_d": ["--", "$0.00"],
+    "emailaddress1_d": "aldenlandry1984@hotmail.com",
+    "websiteurl_d": ["--", "$0.00"],
+    "primarycontactid_d": ["--", "$0.00"],
+    "ddsm_payeecompany_d": "Alden La",
+    "ddsm_payeeattnto_d": ["--", "$0.00"],
+    "ddsm_payeeaddress1_d": "5386 Little Harbour Road",
+    "ddsm_payeeaddress2_d": ["--", "$0.00"],
+    "ddsm_payeecity_d": "New Glasgow",
+    "ddsm_payeestate_d": "NS",
+    "ddsm_payeezipcode_d": "B2H5C4",
+    "ddsm_payeepaymentpreference_d": ["--", "$0.00"],
+    "address1_composite": "5386 Little Harbour Road\r\nNew Glasgow, NS B2H5C4",
+    "address1_city": "New Glasgow",
+    "ddsm_county": ["--", "$0.00"],
+    "parentaccountid_d": ["--", "$0.00"],
+    "businesstypecode_d": ["--", "$0.00"],
+    "ddsm_businessvertical_d": ["--", "$0.00"],
+    "ddsm_taxid_d": ["--", "$0.00"],
+    //Efficiency Trade Network
+    "ddsm_recordmanager_d": ["--", "$0.00"]
+     },
+  "transist": [],
+  "visibleElements": [
+    "table[name=\"tab_14_section_4\"]",
+    "table[name=\"tab_10_section_2\"]",
+    "table[name=\"tab_14_section_8\"]",
+    "table[name=\"Sites/Contract Accounts\"]",
+    "table[name=\"Cycle Projects\"]",
+    // "table[name=\"notes\"]",
+    "table[name=\"tab_9_section_1\"]",
+    "table[name=\"tab_10_section_1\"]",
+    "table[name=\"internal information\"]"
+  ],
+  "invisibleFields": [
+    "ddsm_companyname_d"
+  ],
+  "tabs": [
+    "tab_NotesActivities_content",
+    "tab_9_content",
+    "Cases_content"
+  ],
+  "visibleTabs": [
+    "Overview",
+    "Sites",
+    "Opportunities",
+    "Projects",
+    "Cases",
+    "Docs/Notes",
+    "Efficiency Trade Network",
+    "Account - Record Details"
+  ],
+  "fieldsCorrectFormat": [
+    {
+      "fieldSelector": "#accountnumber_d",
+      "format": "D[0-9]{7}"
+    },
+    {
+      "fieldSelector": "#ddsm_payeenumber_d",
+      "format": "D[0-9]{7}"
+    },
+    {
+      "fieldSelector": "#ownerid_d",
+      "format": "[a-zA-Z0-9]"
+    },
+    {
+      "fieldSelector": "#createdby_d",
+      "format": "[a-zA-Z0-9]"
+    }
+  ]
+}
